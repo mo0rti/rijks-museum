@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Rijks Museum</string>
+    <string name="title_events">Events</string>
+    <string name="title_collection">Collection</string>
+</resources>
