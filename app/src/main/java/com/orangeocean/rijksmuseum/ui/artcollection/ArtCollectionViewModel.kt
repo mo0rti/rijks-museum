@@ -1,13 +1,13 @@
-package com.orangeocean.rijksmuseum.ui.events
+package com.orangeocean.rijksmuseum.ui.artcollection
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class EventsViewModel : ViewModel() {
+class ArtCollectionViewModel : ViewModel() {
 
   private val _text = MutableLiveData<String>().apply {
-    value = "This is home Fragment"
+    value = "This is dashboard Fragment"
   }
   val text: LiveData<String> = _text
 }

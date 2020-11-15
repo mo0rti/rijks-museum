@@ -4,11 +4,11 @@
     <item
         android:id="@+id/navigation_events"
         android:icon="@drawable/ic_events_black_24dp"
-        android:title="@string/title_events" />
+        android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_collection"
-        android:icon="@drawable/ic_collection_black_24dp"
-        android:title="@string/title_collection" />
+        android:id="@+id/navigation_art_collection"
+        android:icon="@drawable/ic_art_collection_black_24dp"
+        android:title="@string/title_art_collection" />
 
 </menu>

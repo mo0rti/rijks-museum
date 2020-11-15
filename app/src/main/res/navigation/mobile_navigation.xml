@@ -7,14 +7,28 @@
 
     <fragment
         android:id="@+id/navigation_events"
-        android:name="com.orangeocean.rijksmuseum.ui.events.EventsFragment"
-        android:label="@string/title_events"
-        tools:layout="@layout/fragment_events" />
+        android:name="com.orangeocean.rijksmuseum.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_collection"
-        android:name="com.orangeocean.rijksmuseum.ui.collection.CollectionFragment"
-        android:label="@string/title_collection"
-        tools:layout="@layout/fragment_collection" />
+        android:id="@+id/navigation_art_collection"
+        android:name="com.orangeocean.rijksmuseum.ui.artcollection.ArtCollectionFragment"
+        android:label="@string/title_art_collection"
+        tools:layout="@layout/fragment_art_collection" >
+        <action
+            android:id="@+id/action_navigation_art_collection_to_artObjectFragment"
+            app:destination="@id/artObjectFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/artObjectFragment"
+        android:name="com.orangeocean.rijksmuseum.ui.artobject.ArtObjectFragment"
+        android:label="@string/title_art_object"
+        tools:layout="@layout/fragment_art_object" />
 
 </navigation>
