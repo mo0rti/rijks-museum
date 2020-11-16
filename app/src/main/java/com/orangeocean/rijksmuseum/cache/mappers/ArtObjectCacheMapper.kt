@@ -12,6 +12,7 @@ constructor() : IEntityMapper<ArtObjectCacheEntity, ArtObject> {
         return ArtObject(
             id = entity.id,
             title = entity.title,
+            thumbnail = entity.thumbnail,
             imageUrl = entity.imageUrl,
         )
     }
@@ -20,6 +21,7 @@ constructor() : IEntityMapper<ArtObjectCacheEntity, ArtObject> {
         return ArtObjectCacheEntity(
             id = domainModel.id,
             title = domainModel.title,
+            thumbnail = domainModel.thumbnail,
             imageUrl = domainModel.imageUrl,
         )
     }

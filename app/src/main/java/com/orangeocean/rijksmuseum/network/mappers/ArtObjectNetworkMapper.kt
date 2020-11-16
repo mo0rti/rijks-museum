@@ -1,4 +1,4 @@
-package com.orangeocean.rijksmuseum.network
+package com.orangeocean.rijksmuseum.network.mappers
 
 import com.orangeocean.rijksmuseum.domain.model.ArtObject
 import com.orangeocean.rijksmuseum.network.entity.ArtObjectNetworkEntity
@@ -14,6 +14,7 @@ constructor(): IEntityMapper<ArtObjectNetworkEntity, ArtObject> {
         return ArtObject(
             id = entity.id,
             title = entity.title,
+            thumbnail = entity.headerImage.url,
             imageUrl = entity.webImage.url,
         )
     }
@@ -22,6 +23,10 @@ constructor(): IEntityMapper<ArtObjectNetworkEntity, ArtObject> {
         return ArtObjectNetworkEntity(
             id = domainModel.id,
             title = domainModel.title,
+            headerImage = WebImageNetworkEntity(
+                guid = UUID.randomUUID().toString(),
+                url = domainModel.thumbnail,
+            ),
             webImage = WebImageNetworkEntity(
                 guid = UUID.randomUUID().toString(),
                 url = domainModel.imageUrl,

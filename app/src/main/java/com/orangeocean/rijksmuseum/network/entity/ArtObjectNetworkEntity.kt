@@ -9,6 +9,9 @@ data class ArtObjectNetworkEntity(
     @SerializedName("title")
     var title: String,
 
+    @SerializedName("headerImage")
+    var headerImage: WebImageNetworkEntity,
+
     @SerializedName("webImage")
     var webImage: WebImageNetworkEntity,
 )

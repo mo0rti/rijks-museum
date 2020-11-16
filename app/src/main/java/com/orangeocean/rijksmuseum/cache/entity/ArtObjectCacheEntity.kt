@@ -13,6 +13,9 @@ data class ArtObjectCacheEntity(
     @ColumnInfo(name = "title")
     var title: String,
 
+    @ColumnInfo(name = "thumbnail")
+    var thumbnail: String,
+
     @ColumnInfo(name = "imageUrl")
     var imageUrl: String,
 )

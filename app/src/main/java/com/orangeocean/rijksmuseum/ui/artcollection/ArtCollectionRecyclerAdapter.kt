@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.orangeocean.rijksmuseum.R
 import com.orangeocean.rijksmuseum.domain.model.ArtObject
+import com.orangeocean.rijksmuseum.ui.artobject.ArtObjectFragment
 import kotlinx.android.synthetic.main.art_collection_row_item.view.*
 
 class ArtCollectionRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -32,7 +34,9 @@ class ArtCollectionRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolde
             is ArtCollectionVH -> {
                 holder.bind(item)
                 holder.itemView.setOnClickListener{
-                    navController.navigate(R.id.action_navigation_art_collection_to_artObjectFragment)
+                    val bundle = bundleOf(ArtObjectFragment.ARG_ART_OBJECT to item)
+                    navController.navigate(
+                        R.id.action_navigation_art_collection_to_artObjectFragment, bundle)
                 }
             }
         }
@@ -63,7 +67,7 @@ class ArtCollectionRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolde
 
             Glide.with(itemView.context)
                 .applyDefaultRequestOptions(requestOptions)
-                .load(artObject.imageUrl)
+                .load(artObject.thumbnail)
                 .into(thumbnail)
         }
     }

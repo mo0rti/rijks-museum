@@ -29,6 +29,11 @@
         android:id="@+id/artObjectFragment"
         android:name="com.orangeocean.rijksmuseum.ui.artobject.ArtObjectFragment"
         android:label="@string/title_art_object"
-        tools:layout="@layout/fragment_art_object" />
+        tools:layout="@layout/fragment_art_object">
+
+        <argument
+            android:name="com.orangeocean.rijksmuseum.ui.artobject.ArtObjectFragment.ARG_ART_OBJECT"
+            app:argType="com.orangeocean.rijksmuseum.domain.model.ArtObject"/>
+    </fragment>
 
 </navigation>
