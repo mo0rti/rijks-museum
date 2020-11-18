@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.os.bundleOf
-import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -16,15 +15,15 @@ import com.orangeocean.rijksmuseum.domain.model.ArtObject
 import com.orangeocean.rijksmuseum.ui.artobject.ArtObjectFragment
 import kotlinx.android.synthetic.main.art_collection_row_item.view.*
 
-class ArtCollectionRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ArtCollectionRecyclerAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var items: List<ArtObject> = ArrayList()
-    private lateinit var navController: NavController
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.art_collection_row_item, parent, false)
-        navController = parent.findNavController();
+        val view =
+            LayoutInflater
+                .from(parent.context)
+                .inflate(R.layout.art_collection_row_item, parent, false)
         return ArtCollectionVH(view)
     }
 
@@ -35,8 +34,9 @@ class ArtCollectionRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolde
                 holder.bind(item)
                 holder.itemView.setOnClickListener{
                     val bundle = bundleOf(ArtObjectFragment.ARG_ART_OBJECT to item)
-                    navController.navigate(
-                        R.id.action_navigation_art_collection_to_artObjectFragment, bundle)
+                    holder.itemView
+                        .findNavController()
+                        .navigate(R.id.action_navigation_art_collection_to_artObjectFragment, bundle)
                 }
             }
         }

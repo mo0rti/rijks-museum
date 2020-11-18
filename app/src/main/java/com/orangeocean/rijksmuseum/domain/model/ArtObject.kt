@@ -9,6 +9,5 @@ data class ArtObject(
     var title: String,
     var thumbnail: String,
     var imageUrl: String,
-) : Parcelable {
-
-}
+    var artistName: String,
+) : Parcelable

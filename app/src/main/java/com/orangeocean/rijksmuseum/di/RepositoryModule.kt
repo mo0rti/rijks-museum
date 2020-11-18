@@ -1,10 +1,8 @@
 package com.orangeocean.rijksmuseum.di
 
-import com.orangeocean.rijksmuseum.cache.dao.ArtObjectDao
-import com.orangeocean.rijksmuseum.cache.mappers.ArtObjectCacheMapper
-import com.orangeocean.rijksmuseum.network.ArtCollectionApi
-import com.orangeocean.rijksmuseum.network.mappers.ArtObjectNetworkMapper
-import com.orangeocean.rijksmuseum.repository.ArtObjectRepository
+import com.orangeocean.rijksmuseum.data.datasource.cache.ArtObjectCacheDataSource
+import com.orangeocean.rijksmuseum.data.datasource.network.ArtObjectNetworkDataSource
+import com.orangeocean.rijksmuseum.data.repository.ArtObjectRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,17 +15,10 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideArtObjectRepository(
-        artObjectDao: ArtObjectDao,
-        artCollectionApi: ArtCollectionApi,
-        artObjectNetworkMapper: ArtObjectNetworkMapper,
-        artObjectCacheMapper: ArtObjectCacheMapper
+    fun provideArtObjectRepository (
+        cacheDataSource: ArtObjectCacheDataSource,
+        networkDataSource: ArtObjectNetworkDataSource
     ): ArtObjectRepository {
-        return ArtObjectRepository(
-            artObjectDao,
-            artCollectionApi,
-            artObjectNetworkMapper,
-            artObjectCacheMapper
-        )
+        return ArtObjectRepository(cacheDataSource, networkDataSource)
     }
 }

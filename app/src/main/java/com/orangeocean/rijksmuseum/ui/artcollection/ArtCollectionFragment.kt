@@ -1,7 +1,6 @@
 package com.orangeocean.rijksmuseum.ui.artcollection
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.orangeocean.rijksmuseum.R
 import com.orangeocean.rijksmuseum.domain.model.ArtObject
-import com.orangeocean.rijksmuseum.utils.DataState
+import com.orangeocean.rijksmuseum.domain.state.DataState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_art_collection.*
 
@@ -32,9 +31,13 @@ class ArtCollectionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         initRecyclerView()
         subscribeObservers()
-        artCollectionViewModel.setStateEvent(StateEvent.GetArtObjectEvents)
+        artCollectionViewModel.setStateEvent(ArtCollectionStateEvent.GetArtObjectEvents)
     }
 
     private fun subscribeObservers() {
@@ -58,7 +61,7 @@ class ArtCollectionFragment : Fragment() {
     }
 
     private fun displayError(message: String?) {
-        Toast.makeText(activity, message, Toast.LENGTH_LONG).show();
+        Toast.makeText(activity, "An Error occurred $message", Toast.LENGTH_LONG).show();
     }
 
     private fun displayLoading(isVisible: Boolean) {

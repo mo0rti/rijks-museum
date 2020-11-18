@@ -4,8 +4,8 @@ import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.orangeocean.rijksmuseum.domain.model.ArtObject
-import com.orangeocean.rijksmuseum.repository.ArtObjectRepository
-import com.orangeocean.rijksmuseum.utils.DataState
+import com.orangeocean.rijksmuseum.data.repository.ArtObjectRepository
+import com.orangeocean.rijksmuseum.domain.state.DataState
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -20,20 +20,19 @@ constructor(
     val dataState: LiveData<DataState<List<ArtObject>>>
         get() = _dataState
 
+    private val _artistName: MutableLiveData<String> = MutableLiveData("Rembrandt van Rijn")
+
     fun setStateEvent(artCollectionStateEvent: ArtCollectionStateEvent) {
         viewModelScope.launch {
             when (artCollectionStateEvent) {
                 is ArtCollectionStateEvent.GetArtObjectEvents -> {
                     artObjectRepository
-                        .getArtObjects()
+                        .getArtObjects(_artistName.value!!)
                         .onEach { dataState -> _dataState.value = dataState }
                         .launchIn(viewModelScope)
                 }
                 is ArtCollectionStateEvent.SearchArtObjectEvents -> {
                     // TODO: search
-                }
-                else -> {
-                    // TODO: nothing happening
                 }
             }
         }

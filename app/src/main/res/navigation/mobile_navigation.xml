@@ -3,13 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_events">
-
-    <fragment
-        android:id="@+id/navigation_events"
-        android:name="com.orangeocean.rijksmuseum.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+    app:startDestination="@id/navigation_art_collection">
 
     <fragment
         android:id="@+id/navigation_art_collection"
