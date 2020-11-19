@@ -1,13 +1,8 @@
 package com.orangeocean.rijksmuseum.data.repository
 
-import com.orangeocean.rijksmuseum.service.cache.database.ArtObjectDao
-import com.orangeocean.rijksmuseum.service.cache.mappers.ArtObjectCacheMapper
-import com.orangeocean.rijksmuseum.domain.model.ArtObject
-import com.orangeocean.rijksmuseum.service.network.api.ArtCollectionApi
-import com.orangeocean.rijksmuseum.service.network.mappers.ArtObjectNetworkMapper
-import com.orangeocean.rijksmuseum.common.Constants
 import com.orangeocean.rijksmuseum.data.datasource.cache.ArtObjectCacheDataSource
 import com.orangeocean.rijksmuseum.data.datasource.network.ArtObjectNetworkDataSource
+import com.orangeocean.rijksmuseum.domain.model.ArtObject
 import com.orangeocean.rijksmuseum.domain.state.DataState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

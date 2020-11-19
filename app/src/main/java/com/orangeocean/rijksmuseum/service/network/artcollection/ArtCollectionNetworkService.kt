@@ -1,9 +1,8 @@
 package com.orangeocean.rijksmuseum.service.network.artcollection
 
-import com.orangeocean.rijksmuseum.service.network.entity.ArtCollectionNetworkEntity
 import com.orangeocean.rijksmuseum.service.network.api.ArtCollectionApi
-import com.orangeocean.rijksmuseum.common.Constants
-import javax.inject.Inject
+import com.orangeocean.rijksmuseum.service.network.entity.ArtCollectionNetworkEntity
+import com.orangeocean.rijksmuseum.utils.Constants
 
 class ArtCollectionNetworkService
 constructor(

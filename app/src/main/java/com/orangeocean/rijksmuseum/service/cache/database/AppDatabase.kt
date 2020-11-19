@@ -3,8 +3,9 @@ package com.orangeocean.rijksmuseum.service.cache.database
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.orangeocean.rijksmuseum.service.cache.entity.ArtObjectCacheEntity
+import com.orangeocean.rijksmuseum.service.cache.entity.RequestCacheEntity
 
-@Database(entities = [ArtObjectCacheEntity::class], version = 3)
+@Database(entities = [ArtObjectCacheEntity::class, RequestCacheEntity::class], version = 4)
 abstract class AppDatabase: RoomDatabase() {
 
     companion object {
@@ -12,4 +13,6 @@ abstract class AppDatabase: RoomDatabase() {
     }
 
     abstract fun artObjectDao():  ArtObjectDao
+
+    abstract fun requestDao():  RequestDao
 }

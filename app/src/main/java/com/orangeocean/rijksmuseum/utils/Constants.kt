@@ -1,4 +1,4 @@
-package com.orangeocean.rijksmuseum.common
+package com.orangeocean.rijksmuseum.utils
 
 class Constants {
     companion object {

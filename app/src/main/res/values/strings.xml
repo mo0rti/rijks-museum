@@ -3,4 +3,6 @@
     <string name="title_home">Home</string>
     <string name="title_art_collection">Art Collection</string>
     <string name="title_art_object">Art Object</string>
+    <string name="search_hint">Enter an artist name to search</string>
+    <string name="there_is_no_data">There is no data to show</string>
 </resources>

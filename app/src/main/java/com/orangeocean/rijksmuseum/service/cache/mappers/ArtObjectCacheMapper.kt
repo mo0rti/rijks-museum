@@ -1,8 +1,8 @@
 package com.orangeocean.rijksmuseum.service.cache.mappers
 
-import com.orangeocean.rijksmuseum.service.cache.entity.ArtObjectCacheEntity
 import com.orangeocean.rijksmuseum.domain.model.ArtObject
 import com.orangeocean.rijksmuseum.domain.utils.IEntityMapper
+import com.orangeocean.rijksmuseum.service.cache.entity.ArtObjectCacheEntity
 import javax.inject.Inject
 
 class ArtObjectCacheMapper

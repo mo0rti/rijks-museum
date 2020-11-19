@@ -1,9 +1,9 @@
 package com.orangeocean.rijksmuseum.service.network.mappers
 
 import com.orangeocean.rijksmuseum.domain.model.ArtObject
+import com.orangeocean.rijksmuseum.domain.utils.IEntityMapper
 import com.orangeocean.rijksmuseum.service.network.entity.ArtObjectNetworkEntity
 import com.orangeocean.rijksmuseum.service.network.entity.WebImageNetworkEntity
-import com.orangeocean.rijksmuseum.domain.utils.IEntityMapper
 import java.util.*
 import javax.inject.Inject
 
