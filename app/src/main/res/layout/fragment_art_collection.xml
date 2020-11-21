@@ -8,7 +8,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.artcollection.ArtCollectionFragment">
 
-
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/fragment_art_collection_app_bar"
         android:layout_width="match_parent"
@@ -29,7 +28,6 @@
             </androidx.appcompat.widget.SearchView>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -54,7 +52,6 @@
             app:layout_constraintStart_toStartOf="parent"
             android:visibility="gone"
             app:layout_constraintTop_toTopOf="parent" />
-
 
         <TextView
             android:id="@+id/empty_list_view"

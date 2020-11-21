@@ -1,7 +1,9 @@
 package com.orangeocean.rijksmuseum.service.cache.database
 
-import androidx.room.*
-import com.orangeocean.rijksmuseum.service.cache.entity.ArtObjectCacheEntity
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.orangeocean.rijksmuseum.service.cache.entity.RequestCacheEntity
 
 @Dao

@@ -4,6 +4,7 @@ import com.orangeocean.rijksmuseum.data.datasource.cache.ArtObjectCacheDataSourc
 import com.orangeocean.rijksmuseum.data.datasource.network.ArtObjectNetworkDataSource
 import com.orangeocean.rijksmuseum.domain.model.ArtObject
 import com.orangeocean.rijksmuseum.domain.state.DataState
+import com.orangeocean.rijksmuseum.utils.AppLogger
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -14,20 +15,27 @@ constructor (
     private val cacheDataSource: ArtObjectCacheDataSource,
     private val networkDataSource: ArtObjectNetworkDataSource,
 ) {
-    suspend fun getArtObjects(artistName: String): Flow<DataState<List<ArtObject>>> = flow {
-        emit(DataState.Loading)
-        try {
-            var cachedArtObjects = cacheDataSource.get(artistName);
-            if (cachedArtObjects.isEmpty()) {
-                val networkArtObjects = networkDataSource.get(artistName);
-                for (artObject in networkArtObjects) {
-                    cacheDataSource.insert(artObject)
-                }
-                cachedArtObjects = cacheDataSource.get(artistName);
+    suspend fun getArtObjects(artistName: String): Flow<DataState<List<ArtObject>>> =
+        flow {
+            emit(DataState.Loading)
+            try {
+                val data = getTheData(artistName)
+                emit(DataState.Success(data));
+            } catch (ex: Exception) {
+                AppLogger.logError("Data fetch error", ex)
+                emit(DataState.Error(Exception("An error has been occurred during fetching data")))
             }
-            emit(DataState.Success(cachedArtObjects));
-        } catch (e: Exception) {
-            emit(DataState.Error(e))
+    }
+
+    private suspend fun getTheData(artistName: String): List<ArtObject> {
+        var cachedArtObjects = cacheDataSource.get(artistName);
+        if (cachedArtObjects.isEmpty()) {
+            val networkArtObjects = networkDataSource.get(artistName);
+            for (artObject in networkArtObjects) {
+                cacheDataSource.insert(artObject)
+            }
+            cachedArtObjects = cacheDataSource.get(artistName);
         }
+        return cachedArtObjects;
     }
 }

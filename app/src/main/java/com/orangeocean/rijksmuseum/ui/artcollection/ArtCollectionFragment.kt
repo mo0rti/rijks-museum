@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.orangeocean.rijksmuseum.R
 import com.orangeocean.rijksmuseum.domain.model.ArtObject
 import com.orangeocean.rijksmuseum.domain.state.DataState
+import com.orangeocean.rijksmuseum.utils.AppLogger
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_art_collection.*
 
@@ -27,36 +28,48 @@ class ArtCollectionFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        AppLogger.logInfo("onCreateView")
         return inflater.inflate(R.layout.fragment_art_collection, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        AppLogger.logInfo("onViewCreated")
         super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        AppLogger.logInfo("onActivityCreated")
         initRecyclerView()
         initSearchView()
         subscribeObservers()
-        artCollectionViewModel.setStateEvent(ArtCollectionStateEvent.GetArtObjectEvents)
     }
 
     private fun subscribeObservers() {
         artCollectionViewModel.dataState.observe(viewLifecycleOwner, Observer { dataState ->
             when (dataState) {
-                is DataState.Success<List<ArtObject>> -> {
+                is DataState.Success<List<ArtObject>> ->
+                {
                     normalState(dataState.data.isNotEmpty())
+                    setRecyclerViewData(dataState.data)
+                }
+
+                is DataState.DataRefreshed<List<ArtObject>> ->
+                {
                     setRecyclerViewData(dataState.data)
                 }
 
                 is DataState.Error -> {
                     errorState()
-                    displayError(dataState.exception.message)
+                    displayError(dataState.exception.message, dataState.exception)
                 }
 
                 is DataState.Loading -> {
                     loadingState()
+                }
+
+                is DataState.Refreshing -> {
+                    // Do Nothing, don't need to show the user any UI interaction
                 }
             }
         })
@@ -68,7 +81,7 @@ class ArtCollectionFragment : Fragment() {
         progressBarLoading.visibility = View.GONE
     }
 
-    private fun displayError(message: String?) {
+    private fun displayError(message: String?, exception: Exception?) {
         Toast.makeText(activity, "An Error occurred $message", Toast.LENGTH_LONG).show();
     }
 
@@ -103,7 +116,6 @@ class ArtCollectionFragment : Fragment() {
                 if (query?.isEmpty()!!)
                     return false;
                 artCollectionViewModel.setArtistName(query)
-                artCollectionViewModel.setStateEvent(ArtCollectionStateEvent.GetArtObjectEvents)
                 search_view.setQuery("", false)
                 search_view.clearFocus()
                 return true;
