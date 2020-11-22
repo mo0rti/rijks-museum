@@ -45,8 +45,8 @@ android {
         resolutionStrategy.force 'com.google.code.findbugs:jsr305:3.0.0'
     }
 
-    viewBinding {
-        enabled = true
+    buildFeatures {
+        viewBinding = true
     }
 
     useLibrary 'android.test.runner'

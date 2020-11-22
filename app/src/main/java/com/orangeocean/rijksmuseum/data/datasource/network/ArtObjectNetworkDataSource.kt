@@ -12,6 +12,6 @@ constructor(
 
     override suspend fun get(artistName: String): List<ArtObject> {
         val artCollection = networkService.get(artistName)
-        return networkMapper.toDomainModelList(artCollection?.artObjects)
+        return networkMapper.toDomainModelList(artCollection.artObjects)
     }
 }
