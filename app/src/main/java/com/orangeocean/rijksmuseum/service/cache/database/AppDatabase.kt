@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import com.orangeocean.rijksmuseum.service.cache.entity.ArtObjectCacheEntity
 import com.orangeocean.rijksmuseum.service.cache.entity.RequestCacheEntity
 
-@Database(entities = [ArtObjectCacheEntity::class, RequestCacheEntity::class], version = 5)
+@Database(entities = [ArtObjectCacheEntity::class, RequestCacheEntity::class], version = 6)
 abstract class AppDatabase: RoomDatabase() {
 
     companion object {

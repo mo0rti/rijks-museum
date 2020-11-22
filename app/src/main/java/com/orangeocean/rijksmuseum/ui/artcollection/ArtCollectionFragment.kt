@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.orangeocean.rijksmuseum.R
 import com.orangeocean.rijksmuseum.domain.model.ArtObject
 import com.orangeocean.rijksmuseum.domain.state.DataState
-import com.orangeocean.rijksmuseum.utils.AppLogger
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_art_collection.*
 
@@ -28,18 +27,15 @@ class ArtCollectionFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        AppLogger.logInfo("onCreateView")
         return inflater.inflate(R.layout.fragment_art_collection, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        AppLogger.logInfo("onViewCreated")
         super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        AppLogger.logInfo("onActivityCreated")
         initRecyclerView()
         initSearchView()
         subscribeObservers()

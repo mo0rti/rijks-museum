@@ -12,7 +12,7 @@ constructor() : IEntityMapper<RequestCacheEntity, Request> {
         return Request(
             id = entity.id,
             url = entity.url,
-            syncPending = entity.syncPending,
+            isSynced = entity.isSynced,
         )
     }
 
@@ -20,7 +20,7 @@ constructor() : IEntityMapper<RequestCacheEntity, Request> {
         return RequestCacheEntity(
             id = domainModel.id,
             url = domainModel.url,
-            syncPending = domainModel.syncPending,
+            isSynced = domainModel.isSynced,
         )
     }
 

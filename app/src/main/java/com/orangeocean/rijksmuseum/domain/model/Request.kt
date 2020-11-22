@@ -5,7 +5,9 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Request(
-    var id: Long,
-    var url: String,
-    var syncPending: Boolean,
-) : Parcelable
+    var id: Long = 0,
+    val url: String,
+    var isSynced: Boolean = false,
+) : Parcelable {
+    constructor(url: String): this(0, url, false)
+}

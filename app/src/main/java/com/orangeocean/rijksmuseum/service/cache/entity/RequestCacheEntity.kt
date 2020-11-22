@@ -13,6 +13,6 @@ data class RequestCacheEntity(
     @ColumnInfo(name = "url")
     var url: String,
 
-    @ColumnInfo(name = "sync_pending", defaultValue = "false")
-    var syncPending: Boolean,
+    @ColumnInfo(name = "is_synced", defaultValue = "false")
+    var isSynced: Boolean,
 )

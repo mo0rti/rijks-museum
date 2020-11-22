@@ -7,11 +7,9 @@ import com.orangeocean.rijksmuseum.data.repository.ArtObjectRepository
 import com.orangeocean.rijksmuseum.domain.model.ArtObject
 import com.orangeocean.rijksmuseum.domain.state.DataState
 import com.orangeocean.rijksmuseum.utils.AppLogger
-import com.orangeocean.rijksmuseum.utils.Constants
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import java.util.concurrent.TimeUnit
 
 class ArtCollectionViewModel
 @ViewModelInject

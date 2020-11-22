@@ -5,5 +5,6 @@ import com.orangeocean.rijksmuseum.domain.state.DataState
 import kotlinx.coroutines.flow.Flow
 
 interface IArtObjectRepository {
+    suspend fun refresh(artistName: String): Flow<DataState<List<ArtObject>>>
     suspend fun getArtObjects(artistName: String): Flow<DataState<List<ArtObject>>>
 }

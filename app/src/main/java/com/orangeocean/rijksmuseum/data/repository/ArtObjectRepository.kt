@@ -1,10 +1,13 @@
 package com.orangeocean.rijksmuseum.data.repository
 
 import com.orangeocean.rijksmuseum.data.datasource.cache.ArtObjectCacheDataSource
+import com.orangeocean.rijksmuseum.data.datasource.cache.RequestCacheDataSource
 import com.orangeocean.rijksmuseum.data.datasource.network.ArtObjectNetworkDataSource
 import com.orangeocean.rijksmuseum.domain.model.ArtObject
+import com.orangeocean.rijksmuseum.domain.model.Request
 import com.orangeocean.rijksmuseum.domain.state.DataState
 import com.orangeocean.rijksmuseum.utils.AppLogger
+import com.orangeocean.rijksmuseum.utils.NetworkConnectivity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -14,8 +17,10 @@ open class ArtObjectRepository
 constructor (
     private val cacheDataSource: ArtObjectCacheDataSource,
     private val networkDataSource: ArtObjectNetworkDataSource,
-) {
-    suspend fun refresh(artistName: String): Flow<DataState<List<ArtObject>>> =
+    //private val requestCacheDataSource: RequestCacheDataSource,
+    private val networkConnectivity: NetworkConnectivity
+): IArtObjectRepository {
+    override suspend fun refresh(artistName: String): Flow<DataState<List<ArtObject>>> =
         flow {
             emit(DataState.Loading)
             try {
@@ -31,7 +36,7 @@ constructor (
             }
         }
 
-    suspend fun getArtObjects(artistName: String): Flow<DataState<List<ArtObject>>> =
+    override suspend fun getArtObjects(artistName: String): Flow<DataState<List<ArtObject>>> =
         flow {
             emit(DataState.Loading)
             try {
@@ -53,5 +58,14 @@ constructor (
             cachedArtObjects = cacheDataSource.get(artistName);
         }
         return cachedArtObjects;
+    }
+
+    private suspend fun callApi() {
+        if (networkConnectivity.isInternetOn()) {
+
+        } else {
+            // Cache to db for further api call
+            //requestCacheDataSource.insert(Request(""))
+        }
     }
 }

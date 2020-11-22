@@ -1,5 +1,6 @@
 package com.orangeocean.rijksmuseum.di
 
+import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.orangeocean.rijksmuseum.BuildConfig
@@ -11,10 +12,12 @@ import com.orangeocean.rijksmuseum.service.network.artcollection.ArtCollectionNe
 import com.orangeocean.rijksmuseum.service.network.entity.ArtObjectNetworkEntity
 import com.orangeocean.rijksmuseum.service.network.mappers.ArtObjectNetworkMapper
 import com.orangeocean.rijksmuseum.utils.Constants
+import com.orangeocean.rijksmuseum.utils.NetworkConnectivity
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -66,6 +69,14 @@ object NetworkModule {
         return retrofit
             .build()
             .create(ArtCollectionApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideNetworkConnectivity(
+        @ApplicationContext context: Context
+    ): NetworkConnectivity {
+        return NetworkConnectivity(context)
     }
 
     @Singleton
