@@ -40,7 +40,8 @@ class ArtObjectFragmentTest {
             "art title",
             "art thumbnail",
             "art image url",
-            "art artist name")
+            "art artist name",
+            "art object description")
         bundle.putParcelable(ArtObjectFragment.ARG_ART_OBJECT, artObject)
 
         launchFragmentInHiltContainer<ArtObjectFragment>(

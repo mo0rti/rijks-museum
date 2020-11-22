@@ -1,6 +1,5 @@
 package com.orangeocean.rijksmuseum.ui
 
-import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers
@@ -8,7 +7,6 @@ import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.orangeocean.rijksmuseum.R
 import com.orangeocean.rijksmuseum.launchFragmentInHiltContainer
 import com.orangeocean.rijksmuseum.ui.artcollection.ArtCollectionFragment
-import com.orangeocean.rijksmuseum.ui.artobject.ArtObjectFragment
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Before

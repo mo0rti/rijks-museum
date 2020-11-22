@@ -2,8 +2,10 @@ package com.orangeocean.rijksmuseum.service.cache.artobject
 
 import com.orangeocean.rijksmuseum.service.cache.database.ArtObjectDao
 import com.orangeocean.rijksmuseum.service.cache.entity.ArtObjectCacheEntity
+import javax.inject.Inject
 
 class ArtObjectCacheService
+@Inject
 constructor(
     private val artObjectDao: ArtObjectDao
 ): IArtObjectCacheService {

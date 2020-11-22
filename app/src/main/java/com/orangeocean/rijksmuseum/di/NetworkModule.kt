@@ -5,10 +5,12 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.orangeocean.rijksmuseum.BuildConfig
 import com.orangeocean.rijksmuseum.data.datasource.network.ArtObjectNetworkDataSource
+import com.orangeocean.rijksmuseum.data.datasource.network.IArtObjectNetworkDataSource
 import com.orangeocean.rijksmuseum.domain.model.ArtObject
 import com.orangeocean.rijksmuseum.domain.utils.IEntityMapper
 import com.orangeocean.rijksmuseum.service.network.api.ArtCollectionApi
 import com.orangeocean.rijksmuseum.service.network.artcollection.ArtCollectionNetworkService
+import com.orangeocean.rijksmuseum.service.network.artcollection.IArtCollectionNetworkService
 import com.orangeocean.rijksmuseum.service.network.entity.ArtObjectNetworkEntity
 import com.orangeocean.rijksmuseum.service.network.mappers.ArtObjectNetworkMapper
 import com.orangeocean.rijksmuseum.utils.Constants
@@ -83,16 +85,16 @@ object NetworkModule {
     @Provides
     fun provideArtCollectionNetworkService(
         artCollectionApi: ArtCollectionApi
-    ): ArtCollectionNetworkService {
+    ): IArtCollectionNetworkService {
         return ArtCollectionNetworkService(artCollectionApi)
     }
 
     @Singleton
     @Provides
     fun provideArtObjectNetworkDataSource(
-        networkService: ArtCollectionNetworkService,
+        networkService: IArtCollectionNetworkService,
         networkMapper: ArtObjectNetworkMapper
-    ): ArtObjectNetworkDataSource {
+    ): IArtObjectNetworkDataSource {
         return ArtObjectNetworkDataSource(networkService, networkMapper)
     }
 }

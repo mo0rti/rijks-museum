@@ -3,9 +3,11 @@ package com.orangeocean.rijksmuseum.di
 import android.content.Context
 import androidx.room.Room
 import com.orangeocean.rijksmuseum.data.datasource.cache.ArtObjectCacheDataSource
+import com.orangeocean.rijksmuseum.data.datasource.cache.IArtObjectCacheDataSource
 import com.orangeocean.rijksmuseum.domain.model.ArtObject
 import com.orangeocean.rijksmuseum.domain.utils.IEntityMapper
 import com.orangeocean.rijksmuseum.service.cache.artobject.ArtObjectCacheService
+import com.orangeocean.rijksmuseum.service.cache.artobject.IArtObjectCacheService
 import com.orangeocean.rijksmuseum.service.cache.database.AppDatabase
 import com.orangeocean.rijksmuseum.service.cache.database.ArtObjectDao
 import com.orangeocean.rijksmuseum.service.cache.entity.ArtObjectCacheEntity
@@ -50,16 +52,16 @@ object CacheModule {
     @Provides
     fun provideArtObjectCacheService(
         artObjectDao: ArtObjectDao
-    ): ArtObjectCacheService {
+    ): IArtObjectCacheService {
         return ArtObjectCacheService(artObjectDao)
     }
 
     @Singleton
     @Provides
     fun provideArtObjectCacheDataSource(
-        cacheService: ArtObjectCacheService,
+        cacheService: IArtObjectCacheService,
         cacheMapper: ArtObjectCacheMapper
-    ): ArtObjectCacheDataSource {
+    ): IArtObjectCacheDataSource {
         return ArtObjectCacheDataSource(cacheService, cacheMapper)
     }
 }

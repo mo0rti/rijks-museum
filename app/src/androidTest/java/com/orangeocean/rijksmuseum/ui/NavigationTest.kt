@@ -14,7 +14,6 @@ import com.orangeocean.rijksmuseum.ui.artcollection.ArtCollectionFragment
 import com.orangeocean.rijksmuseum.ui.artcollection.ArtCollectionRecyclerAdapter
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import dagger.hilt.android.testing.UninstallModules
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

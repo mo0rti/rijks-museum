@@ -1,8 +1,10 @@
 package com.orangeocean.rijksmuseum.data.repository
 
 import com.orangeocean.rijksmuseum.data.datasource.cache.ArtObjectCacheDataSource
+import com.orangeocean.rijksmuseum.data.datasource.cache.IArtObjectCacheDataSource
 import com.orangeocean.rijksmuseum.data.datasource.cache.RequestCacheDataSource
 import com.orangeocean.rijksmuseum.data.datasource.network.ArtObjectNetworkDataSource
+import com.orangeocean.rijksmuseum.data.datasource.network.IArtObjectNetworkDataSource
 import com.orangeocean.rijksmuseum.domain.model.ArtObject
 import com.orangeocean.rijksmuseum.domain.model.Request
 import com.orangeocean.rijksmuseum.domain.state.DataState
@@ -15,10 +17,10 @@ import javax.inject.Inject
 open class ArtObjectRepository
 @Inject
 constructor (
-    private val cacheDataSource: ArtObjectCacheDataSource,
-    private val networkDataSource: ArtObjectNetworkDataSource,
+    private val cacheDataSource: IArtObjectCacheDataSource,
+    private val networkDataSource: IArtObjectNetworkDataSource,
     //private val requestCacheDataSource: RequestCacheDataSource,
-    private val networkConnectivity: NetworkConnectivity
+    //private val networkConnectivity: NetworkConnectivity
 ): IArtObjectRepository {
     override suspend fun refresh(artistName: String): Flow<DataState<List<ArtObject>>> =
         flow {
@@ -61,11 +63,11 @@ constructor (
     }
 
     private suspend fun callApi() {
-        if (networkConnectivity.isInternetOn()) {
+        /*if (networkConnectivity.isInternetOn()) {
 
         } else {
             // Cache to db for further api call
             //requestCacheDataSource.insert(Request(""))
-        }
+        }*/
     }
 }
