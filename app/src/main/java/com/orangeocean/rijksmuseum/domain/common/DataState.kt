@@ -1,4 +1,4 @@
-package com.orangeocean.rijksmuseum.domain.state
+package com.orangeocean.rijksmuseum.domain.common
 
 sealed class DataState<out R> {
     data class Success<out T>(val data: T): DataState<T>()

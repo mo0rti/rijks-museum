@@ -4,13 +4,13 @@ import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.orangeocean.rijksmuseum.BuildConfig
+import com.orangeocean.rijksmuseum.data.datasource.network.ArtObjectNetworkDataSourceImpl
 import com.orangeocean.rijksmuseum.data.datasource.network.ArtObjectNetworkDataSource
-import com.orangeocean.rijksmuseum.data.datasource.network.IArtObjectNetworkDataSource
 import com.orangeocean.rijksmuseum.domain.model.ArtObject
-import com.orangeocean.rijksmuseum.domain.utils.IEntityMapper
+import com.orangeocean.rijksmuseum.domain.common.EntityMapper
 import com.orangeocean.rijksmuseum.service.network.api.ArtCollectionApi
+import com.orangeocean.rijksmuseum.service.network.artcollection.ArtCollectionNetworkServiceImpl
 import com.orangeocean.rijksmuseum.service.network.artcollection.ArtCollectionNetworkService
-import com.orangeocean.rijksmuseum.service.network.artcollection.IArtCollectionNetworkService
 import com.orangeocean.rijksmuseum.service.network.entity.ArtObjectNetworkEntity
 import com.orangeocean.rijksmuseum.service.network.mappers.ArtObjectNetworkMapper
 import com.orangeocean.rijksmuseum.utils.Constants
@@ -38,7 +38,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideArtObjectNetworkMapper(): IEntityMapper<ArtObjectNetworkEntity, ArtObject> {
+    fun provideArtObjectNetworkMapper(): EntityMapper<ArtObjectNetworkEntity, ArtObject> {
         return ArtObjectNetworkMapper()
     }
 
@@ -85,16 +85,16 @@ object NetworkModule {
     @Provides
     fun provideArtCollectionNetworkService(
         artCollectionApi: ArtCollectionApi
-    ): IArtCollectionNetworkService {
-        return ArtCollectionNetworkService(artCollectionApi)
+    ): ArtCollectionNetworkService {
+        return ArtCollectionNetworkServiceImpl(artCollectionApi)
     }
 
     @Singleton
     @Provides
     fun provideArtObjectNetworkDataSource(
-        networkService: IArtCollectionNetworkService,
+        networkService: ArtCollectionNetworkService,
         networkMapper: ArtObjectNetworkMapper
-    ): IArtObjectNetworkDataSource {
-        return ArtObjectNetworkDataSource(networkService, networkMapper)
+    ): ArtObjectNetworkDataSource {
+        return ArtObjectNetworkDataSourceImpl(networkService, networkMapper)
     }
 }

@@ -1,8 +1,8 @@
-package com.orangeocean.rijksmuseum.data.datasource.cache
+package com.orangeocean.rijksmuseum.data.datasource.cache.artobject
 
 import com.orangeocean.rijksmuseum.domain.model.ArtObject
 
-interface IArtObjectCacheDataSource {
+interface ArtObjectCacheDataSource {
 
     suspend fun insert(artObject: ArtObject): Long
 

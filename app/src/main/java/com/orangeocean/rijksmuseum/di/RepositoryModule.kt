@@ -1,11 +1,9 @@
 package com.orangeocean.rijksmuseum.di
 
-import com.orangeocean.rijksmuseum.data.datasource.cache.ArtObjectCacheDataSource
-import com.orangeocean.rijksmuseum.data.datasource.cache.IArtObjectCacheDataSource
+import com.orangeocean.rijksmuseum.data.datasource.cache.artobject.ArtObjectCacheDataSource
 import com.orangeocean.rijksmuseum.data.datasource.network.ArtObjectNetworkDataSource
-import com.orangeocean.rijksmuseum.data.datasource.network.IArtObjectNetworkDataSource
+import com.orangeocean.rijksmuseum.data.repository.ArtObjectRepositoryImpl
 import com.orangeocean.rijksmuseum.data.repository.ArtObjectRepository
-import com.orangeocean.rijksmuseum.data.repository.IArtObjectRepository
 import com.orangeocean.rijksmuseum.utils.NetworkConnectivity
 import dagger.Module
 import dagger.Provides
@@ -20,10 +18,10 @@ object RepositoryModule {
     @Singleton
     @Provides
     fun provideArtObjectRepository (
-        cacheDataSource: IArtObjectCacheDataSource,
-        networkDataSource: IArtObjectNetworkDataSource,
+        cacheDataSource: ArtObjectCacheDataSource,
+        networkDataSource: ArtObjectNetworkDataSource,
         networkConnectivity: NetworkConnectivity
-    ): IArtObjectRepository {
-        return ArtObjectRepository(cacheDataSource, networkDataSource/*, networkConnectivity*/)
+    ): ArtObjectRepository {
+        return ArtObjectRepositoryImpl(cacheDataSource, networkDataSource/*, networkConnectivity*/)
     }
 }

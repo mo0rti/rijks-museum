@@ -1,14 +1,14 @@
-package com.orangeocean.rijksmuseum.data.datasource.cache
+package com.orangeocean.rijksmuseum.data.datasource.cache.request
 
 import com.orangeocean.rijksmuseum.domain.model.Request
-import com.orangeocean.rijksmuseum.service.cache.artobject.RequestCacheService
+import com.orangeocean.rijksmuseum.service.cache.artobject.RequestCacheServiceImpl
 import com.orangeocean.rijksmuseum.service.cache.mappers.RequestCacheMapper
 
-class RequestCacheDataSource
+class RequestCacheDataSourceImpl
 constructor(
-    private val cacheService: RequestCacheService,
+    private val cacheService: RequestCacheServiceImpl,
     private val cacheMapper: RequestCacheMapper
-): IRequestCacheDataSource {
+): RequestCacheDataSource {
 
     override suspend fun insert(request: Request): Long {
         return cacheService.insert(cacheMapper.toEntity(request))

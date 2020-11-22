@@ -1,25 +1,14 @@
 package com.orangeocean.rijksmuseum.service.cache.artobject
 
-import com.orangeocean.rijksmuseum.service.cache.database.RequestDao
 import com.orangeocean.rijksmuseum.service.cache.entity.RequestCacheEntity
 
-class RequestCacheService
-constructor(
-    private val requestDao: RequestDao
-): IRequestCacheService {
-    override suspend fun insert(requestCacheEntity: RequestCacheEntity): Long {
-       return requestDao.insert(requestCacheEntity)
-    }
+interface RequestCacheService {
 
-    override suspend fun updateToSynced(id: Long) {
-        requestDao.updateToSynced(id)
-    }
+    suspend fun insert(requestCacheEntity: RequestCacheEntity): Long
 
-    override suspend fun getUnSynced(): List<RequestCacheEntity> {
-        return requestDao.getUnSynced()
-    }
+    suspend fun updateToSynced(id: Long)
 
-    override suspend fun getById(id: Long): RequestCacheEntity {
-        return requestDao.getById(id)
-    }
+    suspend fun getUnSynced(): List<RequestCacheEntity>
+
+    suspend fun getById(id: Long): RequestCacheEntity
 }

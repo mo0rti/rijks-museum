@@ -1,17 +1,16 @@
-package com.orangeocean.rijksmuseum.data.datasource.cache
+package com.orangeocean.rijksmuseum.data.datasource.cache.artobject
 
 import com.orangeocean.rijksmuseum.domain.model.ArtObject
 import com.orangeocean.rijksmuseum.service.cache.artobject.ArtObjectCacheService
-import com.orangeocean.rijksmuseum.service.cache.artobject.IArtObjectCacheService
 import com.orangeocean.rijksmuseum.service.cache.mappers.ArtObjectCacheMapper
 import javax.inject.Inject
 
-class ArtObjectCacheDataSource
+class ArtObjectCacheDataSourceImpl
 @Inject
 constructor(
-    private val cacheService: IArtObjectCacheService,
+    private val cacheService: ArtObjectCacheService,
     private val cacheMapper: ArtObjectCacheMapper
-): IArtObjectCacheDataSource {
+): ArtObjectCacheDataSource {
 
     override suspend fun insert(artObject: ArtObject): Long {
         return cacheService.insert(cacheMapper.toEntity(artObject))

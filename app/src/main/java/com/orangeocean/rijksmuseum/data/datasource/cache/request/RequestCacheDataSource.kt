@@ -1,8 +1,8 @@
-package com.orangeocean.rijksmuseum.data.datasource.cache
+package com.orangeocean.rijksmuseum.data.datasource.cache.request
 
 import com.orangeocean.rijksmuseum.domain.model.Request
 
-interface IRequestCacheDataSource {
+interface RequestCacheDataSource {
 
     suspend fun insert(request: Request): Long
 

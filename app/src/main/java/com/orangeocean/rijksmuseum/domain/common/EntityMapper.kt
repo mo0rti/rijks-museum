@@ -1,6 +1,6 @@
-package com.orangeocean.rijksmuseum.domain.utils
+package com.orangeocean.rijksmuseum.domain.common
 
-interface IEntityMapper<Entity, DomainModel> {
+interface EntityMapper<Entity, DomainModel> {
     fun toDomainModel(entity: Entity): DomainModel
     fun toEntity(domainModel: DomainModel): Entity
 }

@@ -3,18 +3,20 @@ package com.orangeocean.rijksmuseum.ui.artcollection
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
-import com.orangeocean.rijksmuseum.data.repository.ArtObjectRepository
+import com.orangeocean.rijksmuseum.data.repository.ArtObjectRepositoryImpl
 import com.orangeocean.rijksmuseum.domain.model.ArtObject
-import com.orangeocean.rijksmuseum.domain.state.DataState
+import com.orangeocean.rijksmuseum.domain.common.DataState
 import com.orangeocean.rijksmuseum.utils.AppLogger
+import com.orangeocean.rijksmuseum.utils.Constants
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import java.util.concurrent.TimeUnit
 
 class ArtCollectionViewModel
 @ViewModelInject
 constructor(
-    private val artObjectRepository: ArtObjectRepository,
+    private val artObjectRepository: ArtObjectRepositoryImpl,
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
     private val _dataState: MutableLiveData<DataState<List<ArtObject>>> = MutableLiveData()
@@ -33,8 +35,6 @@ constructor(
     init {
         CoroutineScope(Dispatchers.IO + refreshJob).launch {
             while (true) {
-                //delay(TimeUnit.MINUTES.toMillis(Constants.CACHE_REFRESH_INTERVAL_MIN))
-                delay(6000)
                 AppLogger.logInfo("Data Refreshing for $_artistName")
                 if (!_artistName.isNullOrBlank()) {
                     artObjectRepository
@@ -42,6 +42,7 @@ constructor(
                         .onEach { dataState -> _dataState.value = dataState }
                         .launchIn(viewModelScope)
                 }
+                delay(TimeUnit.MINUTES.toMillis(Constants.CACHE_REFRESH_INTERVAL_MIN))
             }
         }
     }
