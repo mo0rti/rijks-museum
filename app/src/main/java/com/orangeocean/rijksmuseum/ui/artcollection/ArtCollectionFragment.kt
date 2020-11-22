@@ -54,11 +54,6 @@ class ArtCollectionFragment : Fragment() {
                     setRecyclerViewData(dataState.data)
                 }
 
-                is DataState.DataRefreshed<List<ArtObject>> ->
-                {
-                    setRecyclerViewData(dataState.data)
-                }
-
                 is DataState.Error -> {
                     errorState()
                     displayError(dataState.exception.message, dataState.exception)
@@ -66,10 +61,6 @@ class ArtCollectionFragment : Fragment() {
 
                 is DataState.Loading -> {
                     loadingState()
-                }
-
-                is DataState.Refreshing -> {
-                    // Do Nothing, don't need to show the user any UI interaction
                 }
             }
         })
@@ -103,7 +94,6 @@ class ArtCollectionFragment : Fragment() {
     private fun initRecyclerView() {
         recycler_view_art_collection.apply {
             layoutManager = LinearLayoutManager(activity)
-            addItemDecoration(ArtCollectionRecyclerItemDecoration(resources.getInteger(R.integer.list_item_card_padding)))
             artCollectionRecyclerAdapter = ArtCollectionRecyclerAdapter()
             adapter = artCollectionRecyclerAdapter
         }

@@ -21,4 +21,7 @@ data class ArtObjectCacheEntity(
 
     @ColumnInfo(name= "artistName")
     var artistName: String,
+
+    @ColumnInfo(name= "description")
+    var description: String,
 )

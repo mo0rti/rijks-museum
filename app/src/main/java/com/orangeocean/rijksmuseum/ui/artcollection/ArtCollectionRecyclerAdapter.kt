@@ -53,13 +53,15 @@ class ArtCollectionRecyclerAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder
     class ArtCollectionVH constructor(
         itemView: View
     ) : RecyclerView.ViewHolder(itemView) {
-        private val thumbnail: ImageView = itemView.thumbnail
-        private val artTitle: TextView = itemView.art_title
-        private val artArtist: TextView = itemView.art_artist
+        private val thumbnail: ImageView = itemView.image_thumbnail
+        private val artTitle: TextView = itemView.text_art_title
+        private val artArtist: TextView = itemView.text_art_artist
+        private val artObjectId: TextView = itemView.text_art_object_id
 
         fun bind(artObject: ArtObject) {
             artTitle.text = artObject.title
-            artArtist.text = artObject.id
+            artArtist.text = artObject.artistName
+            artObjectId.text = artObject.id
 
             val requestOptions = RequestOptions()
                 .placeholder(R.drawable.ic_launcher_background)

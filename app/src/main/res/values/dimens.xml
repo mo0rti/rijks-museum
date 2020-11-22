@@ -4,7 +4,9 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <dimen name="fragment_horizontal_padding">8dp</dimen>
+    <dimen name="text_margin">4dp</dimen>
 
-    <item name="list_item_card_padding" type="integer">32</item>
-
+    <dimen name="card_view_overlay_button_padding">12dp</dimen>
+    <dimen name="card_view_overlay_button_margin">2dp</dimen>
+    <dimen name="card_view_overlay_button_elevation">4dp</dimen>
 </resources>

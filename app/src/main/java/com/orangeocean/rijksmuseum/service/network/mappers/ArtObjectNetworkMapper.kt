@@ -17,6 +17,7 @@ constructor(): IEntityMapper<ArtObjectNetworkEntity, ArtObject> {
             thumbnail = entity.headerImage.url,
             imageUrl = entity.webImage.url,
             artistName = entity.principalOrFirstMaker,
+            description = entity.description,
         )
     }
 
@@ -32,7 +33,8 @@ constructor(): IEntityMapper<ArtObjectNetworkEntity, ArtObject> {
             webImage = WebImageNetworkEntity(
                 guid = UUID.randomUUID().toString(),
                 url = domainModel.imageUrl,
-            )
+            ),
+            description = domainModel.description,
         )
     }
 

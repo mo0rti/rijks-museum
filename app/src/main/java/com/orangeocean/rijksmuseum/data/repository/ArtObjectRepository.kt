@@ -15,6 +15,22 @@ constructor (
     private val cacheDataSource: ArtObjectCacheDataSource,
     private val networkDataSource: ArtObjectNetworkDataSource,
 ) {
+    suspend fun refresh(artistName: String): Flow<DataState<List<ArtObject>>> =
+        flow {
+            emit(DataState.Loading)
+            try {
+                val networkArtObjects = networkDataSource.get(artistName);
+                for (artObject in networkArtObjects) {
+                    cacheDataSource.insert(artObject)
+                }
+                val cachedArtObjects = cacheDataSource.get(artistName);
+                emit(DataState.Success(cachedArtObjects));
+            } catch (ex: Exception) {
+                AppLogger.logError("Data refresh error", ex)
+                emit(DataState.Error(Exception("An error has been occurred during fetching data")))
+            }
+        }
+
     suspend fun getArtObjects(artistName: String): Flow<DataState<List<ArtObject>>> =
         flow {
             emit(DataState.Loading)

@@ -46,7 +46,8 @@ class ArtObjectFragment : Fragment() {
                 .into(root.image_art_object)
 
             root.text_title.text = it.title
-            root.text_description.text = it.artistName
+            root.text_description.text = it.description
+            root.text_artist_name.text = it.artistName
         }
 
         return root;

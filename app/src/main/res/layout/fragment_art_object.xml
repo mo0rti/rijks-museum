@@ -4,42 +4,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_art_object"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.artobject.ArtObjectFragment">
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/text_artist_name"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:elevation="@dimen/card_view_overlay_button_elevation"
+        android:text="@string/app_name"
+        android:theme="@style/buttonOverlay"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/image_art_object"
         android:layout_width="match_parent"
         android:layout_height="300dp"
+        android:background="@color/black"
         android:contentDescription="@string/app_name"
         android:scaleType="fitCenter"
-        android:background="@color/black"
         android:src="@drawable/ic_launcher_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:padding="@dimen/activity_horizontal_margin"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/fragment_horizontal_padding"
+        android:layout_marginLeft="@dimen/fragment_horizontal_padding"
+        android:layout_marginTop="@dimen/fragment_horizontal_padding"
+        android:layout_marginEnd="@dimen/fragment_horizontal_padding"
+        android:layout_marginRight="@dimen/fragment_horizontal_padding"
+        app:cardElevation="@dimen/cardview_default_elevation"
+        app:cardPreventCornerOverlap="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_art_object">
+        app:layout_constraintTop_toBottomOf="@id/image_art_object">
 
-        <TextView
-            android:id="@+id/text_title"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/title_art_collection" />
+            android:orientation="vertical"
+            android:padding="@dimen/activity_horizontal_margin">
 
-        <TextView
-            android:id="@+id/text_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@string/app_name" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/text_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/title_art_collection"
+                android:theme="@style/titleText" />
+
+            <TextView
+                android:id="@+id/text_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="@string/app_name"
+                android:theme="@style/descriptionText" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

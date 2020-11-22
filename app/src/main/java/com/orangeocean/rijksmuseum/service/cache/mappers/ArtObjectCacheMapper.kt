@@ -15,6 +15,7 @@ constructor() : IEntityMapper<ArtObjectCacheEntity, ArtObject> {
             thumbnail = entity.thumbnail,
             imageUrl = entity.imageUrl,
             artistName = entity.artistName,
+            description = entity.description,
         )
     }
 
@@ -25,6 +26,7 @@ constructor() : IEntityMapper<ArtObjectCacheEntity, ArtObject> {
             thumbnail = domainModel.thumbnail,
             imageUrl = domainModel.imageUrl,
             artistName = domainModel.artistName,
+            description = domainModel.description,
         )
     }
 

@@ -17,4 +17,7 @@ data class ArtObjectNetworkEntity(
 
     @SerializedName("webImage")
     var webImage: WebImageNetworkEntity,
+
+    @SerializedName("longTitle")
+    var description: String,
 )

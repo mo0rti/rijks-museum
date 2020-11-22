@@ -10,4 +10,5 @@ data class ArtObject(
     var thumbnail: String,
     var imageUrl: String,
     var artistName: String,
+    var description: String,
 ) : Parcelable

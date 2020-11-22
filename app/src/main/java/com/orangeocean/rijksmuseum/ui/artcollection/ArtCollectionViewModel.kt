@@ -36,11 +36,11 @@ constructor(
         CoroutineScope(Dispatchers.IO + refreshJob).launch {
             while (true) {
                 //delay(TimeUnit.MINUTES.toMillis(Constants.CACHE_REFRESH_INTERVAL_MIN))
-                delay(20000)
+                delay(6000)
                 AppLogger.logInfo("Data Refreshing for $_artistName")
                 if (!_artistName.isNullOrBlank()) {
                     artObjectRepository
-                        .getArtObjects(_artistName)
+                        .refresh(_artistName)
                         .onEach { dataState -> _dataState.value = dataState }
                         .launchIn(viewModelScope)
                 }
@@ -64,7 +64,6 @@ constructor(
                         .onEach { dataState -> _dataState.value = dataState }
                         .launchIn(viewModelScope)
                 }
-                else -> {}
             }
         }
     }
