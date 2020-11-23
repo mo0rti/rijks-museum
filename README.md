@@ -1,7 +1,7 @@
 <h1 align="center"> Rijks Museum Sample Project </h1>
 
-Flow can emit the data asynchronously(like streams) which can be transformed and collected as Live Data to implement MVVM.
-This project demonstrated the implementation of MVVM with Flow and coroutines to implement unit testing for multiple flow emissions.
+This project demonstrated a list of information related to an artist wth the help of Rijks Museum apis.
+The implementation are based on MVVM with Flow and coroutines to implement unit testing for multiple flow emissions.
 
 Structure
 ---------
@@ -30,7 +30,7 @@ Libraries
 Explanation
 ------------
 This application is working based on an api key, the api key located in the `utils/Constants.kt` file.
-The information about the api can be found at http://rijksmuseum.github.io
+The information about the api can be found at `http://rijksmuseum.github.io`
 Each part of the application seperated into its own directory based on the its domain.
 In repostiory and datasource directories, there are 3 files:
 - Interface of the repository or data source
@@ -38,7 +38,7 @@ In repostiory and datasource directories, there are 3 files:
 - Mock Implementation
 
 
-The level of dependent classes are as follows:
+The levels of dependent classes are as follows:
  - UI
    - Repository
       - Data sources (Network, Cache)
@@ -47,14 +47,19 @@ The level of dependent classes are as follows:
            - Retrofit
 
 
-
 Tests
 ------------
 Tests are divided into two parts:
-1. androidTest: which contains the UI test using espresso. There is also a Fake module which injects
-the mock implementations (mentioned above), to fix an issue on fragment isolation tests a class has been added to the project
-`HiltExt.kt`
+1. androidTest: which contains the UI tests using espresso. There is also a fake module which injects
+the mock implementations (mentioned above).
+A class also added to the project to fix an issue on fragment isolation tests (`HiltExt.kt`)
 2. test: which contains the functionalty test cases for ArtObjectRepostiory.
 
 Screen shots
 ------------
+
+List
+<img src="https://raw.githubusercontent.com/mo0rti/rijksmuseum/master/screenshots/list.png" width="400" aspectRatio="1/2">
+
+Details
+<img src="https://raw.githubusercontent.com/mo0rti/rijksmuseum/master/screenshots/detail.png" width="400" aspectRatio="1/2">
