@@ -1,7 +1,7 @@
 package com.orangeocean.rijksmuseum.data.repository
 
-import com.orangeocean.rijksmuseum.domain.model.ArtObject
 import com.orangeocean.rijksmuseum.domain.common.DataState
+import com.orangeocean.rijksmuseum.domain.model.ArtObject
 import kotlinx.coroutines.flow.Flow
 
 interface ArtObjectRepository {

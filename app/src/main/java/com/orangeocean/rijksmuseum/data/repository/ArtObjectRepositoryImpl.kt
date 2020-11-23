@@ -2,8 +2,8 @@ package com.orangeocean.rijksmuseum.data.repository
 
 import com.orangeocean.rijksmuseum.data.datasource.cache.artobject.ArtObjectCacheDataSource
 import com.orangeocean.rijksmuseum.data.datasource.network.ArtObjectNetworkDataSource
-import com.orangeocean.rijksmuseum.domain.model.ArtObject
 import com.orangeocean.rijksmuseum.domain.common.DataState
+import com.orangeocean.rijksmuseum.domain.model.ArtObject
 import com.orangeocean.rijksmuseum.utils.AppLogger
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -13,9 +13,7 @@ open class ArtObjectRepositoryImpl
 @Inject
 constructor (
     private val cacheDataSource: ArtObjectCacheDataSource,
-    private val networkDataSource: ArtObjectNetworkDataSource,
-    //private val requestCacheDataSource: RequestCacheDataSource,
-    //private val networkConnectivity: NetworkConnectivity
+    private val networkDataSource: ArtObjectNetworkDataSource
 ): ArtObjectRepository {
     override suspend fun refresh(artistName: String): Flow<DataState<List<ArtObject>>> =
         flow {
@@ -55,14 +53,5 @@ constructor (
             cachedArtObjects = cacheDataSource.get(artistName);
         }
         return cachedArtObjects;
-    }
-
-    private suspend fun callApi() {
-        /*if (networkConnectivity.isInternetOn()) {
-
-        } else {
-            // Cache to db for further api call
-            //requestCacheDataSource.insert(Request(""))
-        }*/
     }
 }

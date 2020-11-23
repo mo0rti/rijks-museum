@@ -2,9 +2,8 @@ package com.orangeocean.rijksmuseum.di
 
 import com.orangeocean.rijksmuseum.data.datasource.cache.artobject.ArtObjectCacheDataSource
 import com.orangeocean.rijksmuseum.data.datasource.network.ArtObjectNetworkDataSource
-import com.orangeocean.rijksmuseum.data.repository.ArtObjectRepositoryImpl
 import com.orangeocean.rijksmuseum.data.repository.ArtObjectRepository
-import com.orangeocean.rijksmuseum.utils.NetworkConnectivity
+import com.orangeocean.rijksmuseum.data.repository.ArtObjectRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,9 +18,8 @@ object RepositoryModule {
     @Provides
     fun provideArtObjectRepository (
         cacheDataSource: ArtObjectCacheDataSource,
-        networkDataSource: ArtObjectNetworkDataSource,
-        networkConnectivity: NetworkConnectivity
+        networkDataSource: ArtObjectNetworkDataSource
     ): ArtObjectRepository {
-        return ArtObjectRepositoryImpl(cacheDataSource, networkDataSource/*, networkConnectivity*/)
+        return ArtObjectRepositoryImpl(cacheDataSource, networkDataSource)
     }
 }

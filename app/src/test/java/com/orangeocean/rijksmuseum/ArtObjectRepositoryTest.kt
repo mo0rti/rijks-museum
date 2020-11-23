@@ -52,6 +52,7 @@ class ArtObjectRepositoryTest {
                 get("")
             } doReturn ArtObjectsCollectionMockData.domainObjects
         }
+
         val flow = artObjectRepository.getArtObjects("")
         val flowStates = mutableListOf<DataState<List<ArtObject>>>()
         flow.collect { it: DataState<List<ArtObject>> ->

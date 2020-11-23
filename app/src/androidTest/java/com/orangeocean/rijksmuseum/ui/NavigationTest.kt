@@ -9,11 +9,15 @@ import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.orangeocean.rijksmuseum.R
+import com.orangeocean.rijksmuseum.di.CacheModule
+import com.orangeocean.rijksmuseum.di.NetworkModule
+import com.orangeocean.rijksmuseum.di.RepositoryModule
 import com.orangeocean.rijksmuseum.launchFragmentInHiltContainer
 import com.orangeocean.rijksmuseum.ui.artcollection.ArtCollectionFragment
 import com.orangeocean.rijksmuseum.ui.artcollection.ArtCollectionRecyclerAdapter
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import dagger.hilt.android.testing.UninstallModules
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -24,6 +28,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.MethodSorters
 
+@UninstallModules(RepositoryModule::class, NetworkModule::class, CacheModule::class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @RunWith(AndroidJUnit4ClassRunner::class)
 @HiltAndroidTest

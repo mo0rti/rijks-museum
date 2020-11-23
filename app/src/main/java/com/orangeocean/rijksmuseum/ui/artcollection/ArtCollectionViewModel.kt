@@ -1,11 +1,13 @@
 package com.orangeocean.rijksmuseum.ui.artcollection
 
-import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.*
-import com.orangeocean.rijksmuseum.data.repository.ArtObjectRepositoryImpl
-import com.orangeocean.rijksmuseum.domain.model.ArtObject
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.orangeocean.rijksmuseum.data.repository.ArtObjectRepository
 import com.orangeocean.rijksmuseum.domain.common.DataState
+import com.orangeocean.rijksmuseum.domain.model.ArtObject
 import com.orangeocean.rijksmuseum.utils.AppLogger
 import com.orangeocean.rijksmuseum.utils.Constants
 import kotlinx.coroutines.*
@@ -16,8 +18,7 @@ import java.util.concurrent.TimeUnit
 class ArtCollectionViewModel
 @ViewModelInject
 constructor(
-    private val artObjectRepository: ArtObjectRepositoryImpl,
-    @Assisted private val savedStateHandle: SavedStateHandle
+    private val artObjectRepository: ArtObjectRepository
 ) : ViewModel() {
     private val _dataState: MutableLiveData<DataState<List<ArtObject>>> = MutableLiveData()
     private var _artistName = "Rembrandt van Rijn"
