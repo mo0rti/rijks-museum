@@ -19,23 +19,27 @@ constructor (
         flow {
             emit(DataState.Loading)
             try {
-                val networkArtObjects = networkDataSource.get(artistName);
-                for (artObject in networkArtObjects) {
-                    cacheDataSource.insert(artObject)
-                }
-                val cachedArtObjects = cacheDataSource.get(artistName);
-                emit(DataState.Success(cachedArtObjects));
+                val data = getNetworkFirstData(artistName)
+                emit(DataState.Success(data));
             } catch (ex: Exception) {
                 AppLogger.logError("Data refresh error", ex)
                 emit(DataState.Error(Exception("An error has been occurred during fetching data")))
             }
         }
 
+    private suspend fun getNetworkFirstData(artistName: String): List<ArtObject> {
+        val networkArtObjects = networkDataSource.get(artistName);
+        for (artObject in networkArtObjects) {
+            cacheDataSource.insert(artObject)
+        }
+        return cacheDataSource.get(artistName);
+    }
+
     override suspend fun getArtObjects(artistName: String): Flow<DataState<List<ArtObject>>> =
         flow {
             emit(DataState.Loading)
             try {
-                val data = getTheData(artistName)
+                val data = getCacheFirstData(artistName)
                 emit(DataState.Success(data));
             } catch (ex: Exception) {
                 AppLogger.logError("Data fetch error", ex)
@@ -43,7 +47,7 @@ constructor (
             }
     }
 
-    private suspend fun getTheData(artistName: String): List<ArtObject> {
+    private suspend fun getCacheFirstData(artistName: String): List<ArtObject> {
         var cachedArtObjects = cacheDataSource.get(artistName);
         if (cachedArtObjects.isEmpty()) {
             val networkArtObjects = networkDataSource.get(artistName);

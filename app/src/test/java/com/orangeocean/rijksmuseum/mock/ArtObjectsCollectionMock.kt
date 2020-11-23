@@ -1,10 +1,6 @@
 package com.orangeocean.rijksmuseum.mock
 
 import com.orangeocean.rijksmuseum.domain.model.ArtObject
-import com.orangeocean.rijksmuseum.service.cache.entity.ArtObjectCacheEntity
-import com.orangeocean.rijksmuseum.service.network.entity.ArtCollectionNetworkEntity
-import com.orangeocean.rijksmuseum.service.network.entity.ArtObjectNetworkEntity
-import com.orangeocean.rijksmuseum.service.network.entity.WebImageNetworkEntity
 
 object ArtObjectsCollectionMockData {
 
