@@ -23,7 +23,7 @@ constructor (
                 emit(DataState.Success(data));
             } catch (ex: Exception) {
                 AppLogger.logError("Data refresh error", ex)
-                emit(DataState.Error(Exception("An error has been occurred during fetching data")))
+                emit(DataState.Error(Exception("An error has been occurred during refreshing data")))
             }
         }
 

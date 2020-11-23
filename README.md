@@ -1,6 +1,6 @@
 <h1 align="center"> Rijks Museum Sample Project </h1>
 
-This project demonstrated a list of information related to an artist wth the help of Rijks Museum apis.
+This project demonstrated a list of information related to an artist with the help of Rijks Museum apis.
 The implementation are based on MVVM with Flow and coroutines to implement unit testing for multiple flow emissions.
 
 Structure
@@ -58,8 +58,9 @@ A class also added to the project to fix an issue on fragment isolation tests (`
 Screen shots
 ------------
 
-List
+#### List
+
 <img src="https://raw.githubusercontent.com/mo0rti/rijksmuseum/master/screenshots/list.png" width="400" aspectRatio="1/2">
 
-Details
+#### Details
 <img src="https://raw.githubusercontent.com/mo0rti/rijksmuseum/master/screenshots/detail.png" width="400" aspectRatio="1/2">

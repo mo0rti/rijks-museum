@@ -54,6 +54,6 @@ class ArtObjectFragmentTest {
         )
 
         onView(withId(R.id.text_title)).check(matches(withText(artObject.title)))
-        onView(withId(R.id.text_description)).check(matches(withText(artObject.artistName)))
+        onView(withId(R.id.text_description)).check(matches(withText(artObject.description)))
     }
 }

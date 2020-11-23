@@ -34,18 +34,8 @@ constructor(
     }
 
     init {
-        CoroutineScope(Dispatchers.IO + refreshJob).launch {
-            while (true) {
-                AppLogger.logInfo("Data Refreshing for $_artistName")
-                if (!_artistName.isNullOrBlank()) {
-                    artObjectRepository
-                        .refresh(_artistName)
-                        .onEach { dataState -> _dataState.value = dataState }
-                        .launchIn(viewModelScope)
-                }
-                delay(TimeUnit.MINUTES.toMillis(Constants.CACHE_REFRESH_INTERVAL_MIN))
-            }
-        }
+        startRefreshJob()
+        setStateEvent(ArtCollectionStateEvent.GetArtObjectEvents)
     }
 
     override fun onCleared() {
@@ -53,6 +43,21 @@ constructor(
         refreshCoroutineScope
             .coroutineContext
             .cancelChildren()
+    }
+
+    private fun startRefreshJob() {
+        CoroutineScope(Dispatchers.IO + refreshJob).launch {
+            while (true) {
+                delay(TimeUnit.MINUTES.toMillis(Constants.CACHE_REFRESH_INTERVAL_MIN))
+                AppLogger.logInfo("Data Refreshing for $_artistName")
+                if (!_artistName.isNullOrBlank()) {
+                    artObjectRepository
+                        .refresh(_artistName)
+                        .onEach { dataState -> _dataState.value = dataState }
+                        .launchIn(viewModelScope)
+                }
+            }
+        }
     }
 
     private fun setStateEvent(artCollectionStateEvent: ArtCollectionStateEvent) {
